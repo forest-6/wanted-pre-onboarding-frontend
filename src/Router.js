@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SignIn from "./pages/Auth/SignIn";
+import Auth from "./pages/Auth/Auth";
+import Todos from "./pages/Todos/Todos";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<Auth />} />
+        <Route path="/todos" element={<Todos />} />
       </Routes>
     </BrowserRouter>
   );
