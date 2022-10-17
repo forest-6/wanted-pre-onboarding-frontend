@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import API from "../API/api";
@@ -18,7 +18,8 @@ const Auth = () => {
   const signInValid = idValid && pwValid;
   const signUpValid = idValid && pwValid && rePwValid;
 
-  const signUpCertify = () => {
+  const signUpCertify = (e) => {
+    e.preventDefault();
     fetch(`${API.SIGNUP}`, {
       method: "POST",
       headers: {
@@ -29,14 +30,16 @@ const Auth = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.access_token) {
-          alert("회원가입 성공");
+          alert("✅회원가입 성공");
+          setChangeSign(false);
         } else {
-          alert("회원가입 실패");
+          alert("❌회원가입 실패");
         }
       });
   };
 
-  const signInCertify = () => {
+  const signInCertify = (e) => {
+    e.preventDefault();
     fetch(`${API.SIGNIN}`, {
       method: "POST",
       headers: {
@@ -46,23 +49,31 @@ const Auth = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.access_token) {
-          alert("로그인 성공");
           localStorage.setItem("TOKEN", data.access_token);
-          navigate("/todos");
+          alert("✅로그인 성공");
+          navigate("/todo");
         } else {
-          alert("로그인 실패");
+          alert("❌로그인 실패");
         }
       });
   };
 
+  useEffect(() => {
+    if (localStorage.getItem("TOKEN")) {
+      navigate("/todo");
+      alert("✅이미 로그인 상태입니다.");
+    }
+  }, []);
+
   return (
     <SignInWrap>
-      <SignInBox>
+      <SignInBox onSubmit={changeSign ? signUpCertify : signInCertify}>
         <SignInTitle>{changeSign ? "회원가입" : "로그인"}</SignInTitle>
         <IdInput
           name="id"
-          type="text"
+          type="email"
           onChange={signInHandle}
           placeholder="이메일을 입력하세요."
         />
@@ -80,10 +91,7 @@ const Auth = () => {
             placeholder="비밀번호를 다시 입력하세요."
           />
         )}
-        <SignInBtn
-          onClick={changeSign ? signUpCertify : signInCertify}
-          disabled={changeSign ? !signUpValid : !signInValid}
-        >
+        <SignInBtn disabled={changeSign ? !signUpValid : !signInValid}>
           {changeSign ? "회원가입" : "로그인"}
         </SignInBtn>
         <SignUpBtn onClick={() => setChangeSign(!changeSign)}>
@@ -102,7 +110,7 @@ const SignInWrap = styled.div`
   align-items: center;
   height: 100vh;
 `;
-const SignInBox = styled.div`
+const SignInBox = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -139,8 +147,9 @@ const SignInBtn = styled.button`
     background-color: #68ab6844;
   }
 `;
-const SignUpBtn = styled.button`
+const SignUpBtn = styled.div`
   font-size: 13px;
   font-weight: bold;
   color: #305230;
+  cursor: pointer;
 `;
