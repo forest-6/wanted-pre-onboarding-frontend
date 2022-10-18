@@ -5,7 +5,7 @@ import Todo from "./pages/Todo/Todo";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/wanted-pre-onboarding-frontend">
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/todo" element={<Todo />} />
