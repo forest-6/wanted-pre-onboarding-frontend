@@ -29,11 +29,12 @@ const Auth = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.access_token) {
-          alert("✅회원가입 성공");
+          alert("✅ 회원가입 성공");
           setChangeSign(false);
         } else {
-          alert("❌회원가입 실패");
+          alert("❌ 회원가입 실패");
         }
       });
   };
@@ -52,10 +53,10 @@ const Auth = () => {
         console.log(data);
         if (data.access_token) {
           localStorage.setItem("TOKEN", data.access_token);
-          alert("✅로그인 성공");
+          alert("✅ 로그인 성공");
           navigate("/todo");
         } else {
-          alert("❌로그인 실패");
+          alert("❌ 로그인 실패");
         }
       });
   };
@@ -63,9 +64,10 @@ const Auth = () => {
   useEffect(() => {
     if (localStorage.getItem("TOKEN")) {
       navigate("/todo");
-      alert("✅이미 로그인 상태입니다.");
+      alert("✅ 자동 로그인되었습니다.");
     }
-  }, []);
+    return;
+  }, [navigate]);
 
   return (
     <SignInWrap>
@@ -143,6 +145,8 @@ const SignInBtn = styled.button`
   background-color: #68ab68;
   border: none;
   border-radius: 4px;
+  color: white;
+  font-weight: bold;
   &:disabled {
     background-color: #68ab6844;
   }

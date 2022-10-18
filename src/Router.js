@@ -1,14 +1,14 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Auth from "./pages/Auth/Auth";
-import Todos from "./pages/Todos/Todos";
+import Todo from "./pages/Todo/Todo";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Auth />} />
-        <Route path="/todo" element={<Todos />} />
+        <Route path="/todo" element={<Todo />} />
       </Routes>
     </BrowserRouter>
   );
