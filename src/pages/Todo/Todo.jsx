@@ -43,7 +43,6 @@ const Todo = () => {
       navigate("/");
       alert("❌ 로그인을 먼저 해주세요.");
     }
-    navigate("/todo");
     getTodos();
   }, [navigate]);
 
