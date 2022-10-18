@@ -1,4 +1,5 @@
 {
+  "homepage": "https://forest-6.github.io/wanted-pre-onboarding-frontend/",
   "name": "wanted-pre-onboarding-frontend",
   "version": "0.1.0",
   "private": true,
@@ -40,6 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://forest-6.github.io/wanted-pre-onboarding-frontend"
+  }
 }
