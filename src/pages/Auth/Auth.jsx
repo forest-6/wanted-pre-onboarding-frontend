@@ -4,19 +4,19 @@ import styled from "styled-components";
 import API from "../API/api";
 
 const Auth = () => {
-  const navigate = useNavigate();
   const [changeSign, setChangeSign] = useState(false);
   const [signInValue, setSignInValue] = useState({ id: "", pw: "", rePw: "" });
-  const signInHandle = (e) => {
-    const { value, name } = e.target;
-    setSignInValue({ ...signInValue, [name]: value });
-  };
-
+  const navigate = useNavigate();
   const idValid = signInValue.id.includes("@");
   const pwValid = signInValue.pw.length >= 8;
   const rePwValid = signInValue.pw === signInValue.rePw;
   const signInValid = idValid && pwValid;
   const signUpValid = idValid && pwValid && rePwValid;
+
+  const signInHandle = (e) => {
+    const { value, name } = e.target;
+    setSignInValue({ ...signInValue, [name]: value });
+  };
 
   const signUpCertify = (e) => {
     e.preventDefault();
@@ -77,20 +77,20 @@ const Auth = () => {
           name="id"
           type="email"
           onChange={signInHandle}
-          placeholder="이메일을 입력하세요."
+          placeholder="이메일"
         />
         <PwInput
           name="pw"
           type="password"
           onChange={signInHandle}
-          placeholder="비밀번호를 입력하세요."
+          placeholder="비밀번호 (8자 이상)"
         />
         {changeSign && (
           <PwInput
             name="rePw"
             type="password"
             onChange={signInHandle}
-            placeholder="비밀번호를 다시 입력하세요."
+            placeholder="비밀번호 확인"
           />
         )}
         <SignInBtn disabled={changeSign ? !signUpValid : !signInValid}>
@@ -130,8 +130,9 @@ const SignInTitle = styled.h1`
 `;
 
 const IdInput = styled.input`
-  width: 200px;
+  width: 180px;
   height: 30px;
+  padding: 0 10px;
   border: none;
   border: 1px solid lightgray;
   border-radius: 4px;

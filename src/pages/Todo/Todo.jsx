@@ -52,8 +52,8 @@ const Todo = () => {
       <TodoInputWrap onSubmit={createTodo}>
         <TodoInput
           value={todoInput}
-          autoFocus
           onChange={(e) => setTodoInput(e.target.value)}
+          autoFocus
         />
         <CreateTodoBtn>추가</CreateTodoBtn>
       </TodoInputWrap>
@@ -62,10 +62,9 @@ const Todo = () => {
         return (
           <TodoList
             key={item.id}
-            todo={item.todo}
             id={item.id}
+            todo={item.todo}
             completed={item.isCompleted}
-            setTodoList={setTodoList}
             getTodos={getTodos}
           />
         );

@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import API from "../API/api";
 import { RiPencilFill } from "react-icons/ri";
 
-const TodoList = ({ todo, completed, id, setTodoList, getTodos }) => {
+const TodoList = ({ id, todo, completed, getTodos }) => {
   const [update, setUpdate] = useState(false);
   const [updateTodoInput, setUpdateTodoInput] = useState(todo);
   const [updateCompleted, setUpdateCompleted] = useState(completed);
