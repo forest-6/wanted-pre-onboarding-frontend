@@ -6,6 +6,9 @@
 
 <a href="https://forest-6.github.io/wanted-pre-onboarding-frontend/">배포 링크로 이동</a>
 
+<img width="900" src="https://github.com/forest-6/wanted-pre-onboarding-frontend/assets/92246102/329ce019-a11b-418d-b48a-626670965c53">
+
+
 ## 실행 방법
 
 ```
